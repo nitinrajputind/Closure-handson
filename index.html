@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- External styleSheet -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Closure Handson </h1>
+    <hr>
+    <div class="mainContanier">
+        <div class="question1">
+        <p class="bold">Q1:
+            <pre class="blue">
+            function counter(){
+                var counter = 0;
+                
+                function IncreaseCounter() {
+                    return counter += 1;
+                };
+                
+                return IncreaseCounter;
+            }
+                
+            var counter = counter();
+            alert(counter());
+            alert(counter());
+            alert(counter());
+            alert(counter());
+            </pre>
+        </p>
+        <p class="blue">OUTPUT :- 4 time alert is shown with counter value 1,2,3,4 respectivly</p>
+        <p>NOTE:- 
+            <p class="green">The value of counter will Increase with respect to how many times it is called, because the counter function, is getting updated as soon as it is called another time.</p>
+        </p>
+        </div>
+        <hr>
+        <div class="question2">
+        <p class="bold">Q2 :- 
+        <pre class="blue">
+            let count = 0;
+            (function () {
+                if (count === 0) {
+                    let count = 1;
+                    console.log(count); // What is logged?
+                }
+                console.log(count); // What is logged?
+            })();
+        </pre>
+        </p>
+        <p class="blue">OUTPUT :- 1 <br> 0</p>
+        <p>NOTE :- 
+            <p class="green">when console.log(count) was count first time, there it matched the if condition, and when it was called second time it searched the value which was out of the function scope so it accessed the let variable of count i.e 0.</p>
+        </p>
+        </div>
+        <hr>
+        <div class="question3">
+            <p class="bold">Q3 :-
+                <pre class="blue">
+                for (var i = 0; i < 3; i++) {
+                    setTimeout(function log() {
+                        console.log(i);     // What is logged?
+                    }, 1000);
+                }
+                </pre>
+            </p>
+            <p class="blue">OUTPUT :- 3 <br> 3 <br> 3</p>
+            <p>NOTE :- 
+                <p class="green">After the loop get's over , it will run setTimeOut for 3 times which will print value of i which is now 3</p>
+            </p>
+        </div>
+        <hr>
+        <div class="question4">
+            <p class="bold">Q4 :- Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.</p>
+            <p>ANS :- </p>
+            <pre class="blue">
+                function para(length){
+                    function area(breath){
+                        console.log(length*breath)
+                    }
+                    return area
+                }
+                
+                let ans = para(20);
+                ans (10)                
+            </pre>
+            <p class="blue">OUTPUT :- 200</p>
+        </div>
+        <hr>
+        <div class="question5">
+            <p class="bold">Q5 : Take a variable in outer function and create an inner function to increase the counter every time it is called</p>
+            <p class="blue">ANS :-</p>
+            <pre class="blue">
+                function counter(){
+                    var counter = 0;
+                
+                    function IncreaseCounter() {
+                        return counter += 1;
+                    };
+                    return IncreaseCounter;
+                }
+                 const func2 = counter(0);
+                 func2();
+                 func2();
+                 func2();
+                 func2();
+            </pre>
+        </div>
+        <hr>
+        <div class="question6">
+            <p class="bold">Q6 :- print Output</p>
+            <pre class="blue">
+                var a = 12;
+                (function () {
+                    alert(a);
+                })();
+            </pre>
+            <p class="blue">OUTPUT :- 12</p>
+            <p>NOTE :-
+                <p class="green">It will show as a popup.</p>
+            </p>
+        </div>
+        <hr>
+        <div class="question7">
+            <p class="bold">Q8 :-</p>
+            <pre class="blue">
+                var a = 10;
+                var x = (function () {
+                    var a = 12;
+                    return function () {
+                        alert(a);
+                    };
+                })();
+                x();
+            </pre>
+            <p class="blue">OUTPUT :- 12</p>
+            <p>NOTE :- 
+                <p class="green">It will show as a popup.(var a=10 will be updated as var a=12, because var is a global scope)</p>
+            </p>
+        </div>
+        <hr>
+        <div class="question8">
+            <p class="bold">Q8 :- </p>
+            <pre class="blue">
+                var globalVar = "xyz";
+                (function outerFunc(outerArg) {
+                    var outerVar = 'a';
+                    (function innerFunc(innerArg) {
+                        var innerVar = 'b';
+                        console.log(
+                            "outerArg = " + outerArg + "\n" +
+                            "innerArg = " + innerArg + "\n" +
+                            "outerVar = " + outerVar + "\n" +
+                            "innerVar = " + innerVar + "\n" +
+                            "globalVar = " + globalVar);
+                        })(456);
+                    })(123);
+            </pre>
+            <p class="blue">OUTPUT :- outerArg = 123 <br>
+                innerArg = 456 <br>
+                outerVar = a <br>
+                innerVar = b <br>
+                globalVar = xyz
+            </p>
+            <p>NOTE :-
+                <p class="green"> Every variable and function is assigned with respected value</p>
+            </p>
+        </div>
+
+
+
+
+    </div>
+
+
+    <script src="./script.js"></script>
+</body>
+</html>
